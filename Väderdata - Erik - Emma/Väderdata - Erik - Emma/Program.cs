@@ -1,10 +1,13 @@
-﻿namespace Väderdata___Erik___Emma
+﻿using Väderdata___Erik___Emma.Methods;
+
+namespace Väderdata___Erik___Emma
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            //CreateReadFile.CreateUte();
+            CreateReadFile.CreateInne();
         }
     }
 }
