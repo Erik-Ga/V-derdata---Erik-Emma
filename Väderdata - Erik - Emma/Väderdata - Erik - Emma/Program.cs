@@ -8,7 +8,8 @@ namespace Väderdata___Erik___Emma
         {
             // CreateReadFile.CreateUte();
             // CreateReadFile.CreateInne();
-            RegexValidate.DateCheck("2016-05-31");
+            // RegexValidate.DateCheck("2016-05-31");
+            CreateArrayList.UteArrayConvert();
         }
     }
 }
