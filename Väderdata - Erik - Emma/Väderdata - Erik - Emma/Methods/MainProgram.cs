@@ -40,11 +40,13 @@ namespace Väderdata___Erik___Emma.Methods
                 {
                     case IntroMenu.Utomhus_Data:
                         Console.Clear();
-                        OutsideData();
+                        OutsideFilterMethod.AverageTemperature();
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case IntroMenu.Inomhus_Data:
                         Console.Clear();
-                        InsideData();
+                        
                         break;
                     default:
                         Console.Clear();
@@ -54,18 +56,6 @@ namespace Väderdata___Erik___Emma.Methods
                         break;
                 }
             }          
-        }
-        public static void OutsideData()
-        {
-            Console.WriteLine("Outside test!");
-            Console.ReadLine();
-            Console.Clear();
-        }
-        public static void InsideData()
-        {
-            Console.WriteLine("Inside test!");
-            Console.ReadLine();
-            Console.Clear();
         }
     }
 }
