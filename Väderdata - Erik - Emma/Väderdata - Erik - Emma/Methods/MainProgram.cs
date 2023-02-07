@@ -84,15 +84,34 @@ namespace Väderdata___Erik___Emma.Methods
                                 Console.Clear();
                                 break;
                             case OutsideMenu.Varmaste_till_kallaste_dagen:
+                                Console.Clear();
                                 OutsideFilterMethod.WarmToCold();
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case OutsideMenu.Torraste_till_fuktigaste_dagen:
+                                Console.Clear();
+                                OutsideFilterMethod.DryToMoist();
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case OutsideMenu.Mögelrisk:
+                                Console.Clear();
+
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case OutsideMenu.Meteorologisk_höst:
+                                Console.Clear();
+
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case OutsideMenu.Meteorologisk_vinter:
+                                Console.Clear();
+
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                         }
                         break;

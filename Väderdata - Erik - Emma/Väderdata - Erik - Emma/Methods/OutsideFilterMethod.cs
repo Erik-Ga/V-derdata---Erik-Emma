@@ -73,17 +73,76 @@
                 {
                     string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
                             StringSplitOptions.RemoveEmptyEntries);
-
+                    
                     tempArrayList.Add(lineArray);
                 }
 
                 tempArrayList = tempArrayList.OrderBy(t => t[3]).ToList();
 
-                foreach (string[] temp in tempArrayList)
+                var groupByDate = from d in tempArrayList
+                                  group d by d[0] into newGroup
+                                  orderby newGroup.Key
+                                  select newGroup;
+
+                List<double> avgTemp = new List<double>();
+                foreach (var group in groupByDate)
                 {
-                    Console.WriteLine(temp[0] + ", " + temp[3]);
+                    Console.WriteLine($"Datum: {group.Key}");
+                    foreach(var item in group)
+                    {
+                        string dateTemp = item[3].Replace(".", ",");
+                        avgTemp.Add(double.Parse(dateTemp));
+                    }
+                    Console.WriteLine("Medeltemp: " + avgTemp.Average());
+                    avgTemp.Clear();
+                }
+                
+                //foreach (string[] temp in airArrayList)
+                //{
+                //    Console.WriteLine(temp[0] + ", " + temp[3]);
+
+                //}
+            }
+        }
+        public static void DryToMoist()
+        {
+            List<string[]> airArrayList = new List<string[]>();
+
+            using (StreamReader reader = new StreamReader(path + "ute.txt"))
+            {
+                for (int i = 1; i < outsideArray.Length; i++)
+                {
+                    string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
+                            StringSplitOptions.RemoveEmptyEntries);
+
+                    airArrayList.Add(lineArray);
                 }
 
+                airArrayList = airArrayList.OrderBy(t => t[4]).ToList();
+
+                var groupByDate = from d in airArrayList
+                                  group d by d[0] into newGroup
+                                  orderby newGroup.Key
+                                  select newGroup;
+
+                List<double> avgMoist = new List<double>();
+                foreach (var group in groupByDate)
+                {
+                    Console.WriteLine($"Datum: {group.Key}");
+                    foreach (var item in group)
+                    {
+                        string dateTemp = item[4].Replace(".", ",");
+                        avgMoist.Add(double.Parse(dateTemp));
+                    }
+                    Console.WriteLine("Medelluftfuktighet: " + avgMoist.Average());
+                    avgMoist.Clear();
+                }
+
+                //foreach (string[] temp in airArrayList)
+                //{
+                //    Console.WriteLine(temp[0] + ", " + temp[3]);
+
+                //}
             }
         }
     }
