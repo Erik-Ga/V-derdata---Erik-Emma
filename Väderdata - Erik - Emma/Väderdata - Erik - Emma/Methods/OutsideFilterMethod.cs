@@ -32,9 +32,6 @@ namespace Väderdata___Erik___Emma.Methods
         }
         public static void AverageTemperature()
         {
-            //Console.WriteLine("Ange datum mellan 2016-06 till 2017 (formatexempel: 2016-06-17): ");
-            //string date = Console.ReadLine();
-
             List<double> tempList = new List<double>();
 
             using (StreamReader reader = new StreamReader(path + "ute.txt"))

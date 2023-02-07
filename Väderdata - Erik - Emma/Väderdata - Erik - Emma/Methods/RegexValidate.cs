@@ -12,7 +12,7 @@ namespace Väderdata___Erik___Emma.Methods
         public static string path = "../../../Väderdata/";
         public static string DateCheck()
         {
-            Console.WriteLine("Ange datum: ");
+            Console.WriteLine("Ange datum mellan 2016-06 till 2016-12 (formatexempel: 2016-06-17): ");
             string date = Console.ReadLine();
             Regex validateRegexDate = new Regex("\\d{4}-\\d{2}-\\d{2}");
             if (validateRegexDate.IsMatch(date) && !date.Contains("2016-05") && !date.Contains("2017-01"))
