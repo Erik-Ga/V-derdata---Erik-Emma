@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Väderdata___Erik___Emma.Methods
 {
-    public class OutsideFilterMethod
+    internal class InsideFilterMethod
     {
         public static string path = "../../../Väderdata/";
 
         public static List<string[]> arrayList = new List<string[]>();
-        public static string[] outsideArray = File.ReadAllLines(path + "ute.txt");
+        public static string[] insideArray = File.ReadAllLines(path + "inne.txt");
 
-        public static void OutsideArrayConvert()
+        public static void InsideArrayConvert()
         {
-            using (StreamReader reader = new StreamReader(path + "ute.txt"))
+            using (StreamReader reader = new StreamReader(path + "inne.txt"))
             {
-                for (int i = 1; i < outsideArray.Length; i++)
+                for (int i = 1; i < insideArray.Length; i++)
                 {
                     string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
                             StringSplitOptions.RemoveEmptyEntries);
@@ -35,10 +35,10 @@ namespace Väderdata___Erik___Emma.Methods
             List<double> tempList = new List<double>();
             List<double> moistList = new List<double>();
 
-            using (StreamReader reader = new StreamReader(path + "ute.txt"))
+            using (StreamReader reader = new StreamReader(path + "inne.txt"))
             {
                 string dateCheck = RegexValidate.DateCheck();
-                for (int i = 1; i < outsideArray.Length; i++)
+                for (int i = 1; i < insideArray.Length; i++)
                 {
                     string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
                             StringSplitOptions.RemoveEmptyEntries);
@@ -55,7 +55,7 @@ namespace Väderdata___Erik___Emma.Methods
                         moistList.Add(double.Parse(moist));
                     }
                 }
-                if(tempList.Count > 0)
+                if (tempList.Count > 0)
                 {
                     Console.WriteLine("Medeltemperaturen för valt datum: " + tempList.Average());
                     Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistList.Average());
@@ -64,7 +64,7 @@ namespace Väderdata___Erik___Emma.Methods
                 {
                     Console.WriteLine("Datumet du angivit saknas eller skrivits i fel format! :(");
                 }
-                               
+
             }
             tempList.Clear();
         }
