@@ -77,7 +77,12 @@
                     tempArrayList.Add(lineArray);
                 }
 
-                tempArrayList.Sort(tempArrayList[3]);
+                tempArrayList = tempArrayList.OrderBy(t => t[3]).ToList();
+
+                foreach (string[] temp in tempArrayList)
+                {
+                    Console.WriteLine(temp[0] + ", " + temp[3]);
+                }
 
             }
         }

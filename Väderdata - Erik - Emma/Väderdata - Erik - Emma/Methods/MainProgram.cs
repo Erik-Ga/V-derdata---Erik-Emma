@@ -84,6 +84,7 @@ namespace Väderdata___Erik___Emma.Methods
                                 Console.Clear();
                                 break;
                             case OutsideMenu.Varmaste_till_kallaste_dagen:
+                                OutsideFilterMethod.WarmToCold();
                                 break;
                             case OutsideMenu.Torraste_till_fuktigaste_dagen:
                                 break;
