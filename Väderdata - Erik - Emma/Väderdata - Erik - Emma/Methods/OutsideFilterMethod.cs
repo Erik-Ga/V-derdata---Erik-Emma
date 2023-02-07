@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Väderdata___Erik___Emma.Methods
+﻿namespace Väderdata___Erik___Emma.Methods
 {
     public class OutsideFilterMethod
     {
@@ -32,6 +26,7 @@ namespace Väderdata___Erik___Emma.Methods
         }
         public static void AverageTemperature()
         {
+            //Kvar att göra: Listorna måste rensas!!
             List<double> tempList = new List<double>();
             List<double> moistList = new List<double>();
 
@@ -55,7 +50,7 @@ namespace Väderdata___Erik___Emma.Methods
                         moistList.Add(double.Parse(moist));
                     }
                 }
-                if(tempList.Count > 0)
+                if (tempList.Count > 0)
                 {
                     Console.WriteLine("Medeltemperaturen för valt datum: " + tempList.Average());
                     Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistList.Average());
@@ -64,9 +59,27 @@ namespace Väderdata___Erik___Emma.Methods
                 {
                     Console.WriteLine("Datumet du angivit saknas eller skrivits i fel format! :(");
                 }
-                               
+
             }
             tempList.Clear();
+        }
+        public static void WarmToCold()
+        {
+            List<string[]> tempArrayList = new List<string[]>();
+
+            using (StreamReader reader = new StreamReader(path + "ute.txt"))
+            {
+                for (int i = 1; i < outsideArray.Length; i++)
+                {
+                    string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
+                            StringSplitOptions.RemoveEmptyEntries);
+
+                    tempArrayList.Add(lineArray);
+                }
+
+                tempArrayList.Sort(tempArrayList[3]);
+
+            }
         }
     }
 }
