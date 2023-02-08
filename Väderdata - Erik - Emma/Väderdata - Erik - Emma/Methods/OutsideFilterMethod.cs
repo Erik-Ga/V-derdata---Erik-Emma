@@ -50,19 +50,17 @@
                     }
                 }
 
-                //Avrundar medeltemperatur och medelluftfuktighet till 1 decimal (delad metod?)
-                double tempnr1 = (tempList.Average() + 0.05) * 10;
-                int temp2 = (int)tempnr1;
-                double tempround = (double)temp2 / 10;
-                double moistnr1 = (moistList.Average() + 0.05) * 10;
-                int moistnr2 = (int)moistnr1;
-                double moistround = (double)moistnr2 / 10;
+                //Avrundar medeltemperatur och medelluftfuktighet till 1 decimal
+                double tempAvrNr = tempList.Average();
+                double moistAvrNr = moistList.Average();
+                double tempRounded = SharedMethod.ConvertToOneDecimal(tempAvrNr);
+                double moistRounded = SharedMethod.ConvertToOneDecimal(moistAvrNr);
 
                 if (tempList.Count > 0)
                 {
                     Console.WriteLine("-------------------------------------------------------------------");
-                    Console.WriteLine("Medeltemperaturen för valt datum: " + tempround);
-                    Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistround);
+                    Console.WriteLine("Medeltemperaturen för valt datum: " + tempRounded);
+                    Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistRounded);
                 }
                 else
                 {

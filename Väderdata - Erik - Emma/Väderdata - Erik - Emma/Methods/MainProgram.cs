@@ -35,9 +35,9 @@ namespace Väderdata___Erik___Emma.Methods
             var loop = true;
             while(loop)
             {
-                Console.WriteLine("Välkommen till väderappen! " +
-                                "\n--------------------------\n" +
-                                  "Vänligen välj datatyp:");
+                string welcome = "Välkommen till väderappen! ";
+                SharedMethod.LineForWord(welcome);
+                Console.WriteLine("Vänligen välj datatyp:");
 
                 foreach (int i in Enum.GetValues(typeof(IntroMenu)))
                 {
@@ -60,8 +60,9 @@ namespace Väderdata___Erik___Emma.Methods
                 {
                     case IntroMenu.Utomhus_Data:
                         Console.Clear();
-                        Console.WriteLine("Utomhusdata:");
-                        Console.WriteLine("------------");
+                        string outsideData = "Utomhusdata:";
+                        SharedMethod.LineForWord(outsideData);
+
                         foreach (int i in Enum.GetValues(typeof(OutsideMenu)))
                         {
                             Console.WriteLine($"{i}. {Enum.GetName(typeof(OutsideMenu), i).Replace('_', ' ')}");
@@ -121,8 +122,9 @@ namespace Väderdata___Erik___Emma.Methods
                         break;
                     case IntroMenu.Inomhus_Data:
                         Console.Clear();
-                        Console.WriteLine("Inomhusdata:");
-                        Console.WriteLine("------------");
+                        string insideData = "Inomhusdata:";
+                        SharedMethod.LineForWord(insideData);
+
                         foreach (int i in Enum.GetValues(typeof(InsideMenu)))
                         {
                             Console.WriteLine($"{i}. {Enum.GetName(typeof(InsideMenu), i).Replace('_', ' ')}");
