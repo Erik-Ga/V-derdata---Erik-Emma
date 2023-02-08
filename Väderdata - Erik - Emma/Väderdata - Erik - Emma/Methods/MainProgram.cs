@@ -144,8 +144,16 @@ namespace Väderdata___Erik___Emma.Methods
                                 Console.Clear();
                                 break;
                             case InsideMenu.Varmaste_till_kallaste_dagen:
+                                Console.Clear();
+                                InsideFilterMethod.WarmToCold();
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case InsideMenu.Torraste_till_fuktigaste_dagen:
+                                Console.Clear();
+                                InsideFilterMethod.DryToMoist();
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case InsideMenu.Mögelrisk:
                                 break;
