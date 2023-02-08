@@ -139,17 +139,26 @@ namespace Väderdata___Erik___Emma.Methods
                                   orderby newGroup.Key
                                   select newGroup;
 
+                List<string[]> totalSum = new List<string[]>();
                 List<double> avgMoist = new List<double>();
                 foreach (var group in groupByDate)
                 {
-                    Console.WriteLine($"Datum: {group.Key}");
+                    //Console.WriteLine($"Datum: {group.Key}");
                     foreach (var item in group)
                     {
                         string dateTemp = item[4].Replace(".", ",");
                         avgMoist.Add(double.Parse(dateTemp));
                     }
-                    Console.WriteLine("Medelluftfuktighet: " + avgMoist.Average());
+                    // double[] datetempsum = new double[] { double.Parse(group.Key), avgMoist.Average() };
+                    string[] datetempsum = new string[] { group.Key, avgMoist.Average().ToString() };
+                    totalSum.Add(datetempsum);
+                    totalSum = totalSum.OrderBy(t => t[1]).ToList();
+                    //Console.WriteLine("Medelluftfuktighet: " + avgMoist.Average());
                     avgMoist.Clear();
+                }
+                foreach (string[] value in totalSum)
+                {
+                    Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
                 }
 
                 //foreach (string[] temp in airArrayList)
