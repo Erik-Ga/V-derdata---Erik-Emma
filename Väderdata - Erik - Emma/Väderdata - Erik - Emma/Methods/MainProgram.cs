@@ -35,7 +35,10 @@ namespace Väderdata___Erik___Emma.Methods
             var loop = true;
             while(loop)
             {
-                Console.WriteLine("Välkommen till väderappen! \nVänligen välj datatyp:");
+                Console.WriteLine("Välkommen till väderappen! " +
+                                "\n--------------------------\n" +
+                                  "Vänligen välj datatyp:");
+
                 foreach (int i in Enum.GetValues(typeof(IntroMenu)))
                 {
                     Console.WriteLine($"{i}. {Enum.GetName(typeof(IntroMenu), i).Replace('_', ' ')}");
@@ -58,6 +61,7 @@ namespace Väderdata___Erik___Emma.Methods
                     case IntroMenu.Utomhus_Data:
                         Console.Clear();
                         Console.WriteLine("Utomhusdata:");
+                        Console.WriteLine("------------");
                         foreach (int i in Enum.GetValues(typeof(OutsideMenu)))
                         {
                             Console.WriteLine($"{i}. {Enum.GetName(typeof(OutsideMenu), i).Replace('_', ' ')}");
@@ -118,6 +122,7 @@ namespace Väderdata___Erik___Emma.Methods
                     case IntroMenu.Inomhus_Data:
                         Console.Clear();
                         Console.WriteLine("Inomhusdata:");
+                        Console.WriteLine("------------");
                         foreach (int i in Enum.GetValues(typeof(InsideMenu)))
                         {
                             Console.WriteLine($"{i}. {Enum.GetName(typeof(InsideMenu), i).Replace('_', ' ')}");

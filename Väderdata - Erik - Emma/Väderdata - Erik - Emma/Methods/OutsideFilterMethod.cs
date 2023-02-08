@@ -60,11 +60,13 @@
 
                 if (tempList.Count > 0)
                 {
+                    Console.WriteLine("-------------------------------------------------------------------");
                     Console.WriteLine("Medeltemperaturen för valt datum: " + tempround);
                     Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistround);
                 }
                 else
                 {
+                    Console.WriteLine("-------------------------------------------------------------------");
                     Console.WriteLine("Datumet du angivit saknas eller skrivits i fel format! :(");
                 }
 
