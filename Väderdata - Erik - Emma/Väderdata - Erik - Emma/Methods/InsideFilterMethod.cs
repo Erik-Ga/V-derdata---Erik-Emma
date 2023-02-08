@@ -108,7 +108,7 @@ namespace Väderdata___Erik___Emma.Methods
 
                     string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
                     totalSum.Add(dateTempSum);
-                    totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
+                    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
                     avgTemp.Clear();
                 }
@@ -150,7 +150,7 @@ namespace Väderdata___Erik___Emma.Methods
 
                     string[] datetempsum = new string[] { group.Key, avgMoist.Average().ToString() };
                     totalSum.Add(datetempsum);
-                    totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
+                    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
                     avgMoist.Clear();
                 }

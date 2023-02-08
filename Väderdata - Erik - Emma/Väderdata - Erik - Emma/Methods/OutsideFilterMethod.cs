@@ -102,7 +102,7 @@
 
                     string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
                     totalSum.Add(dateTempSum);
-                    totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
+                    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
                     avgTemp.Clear();
                 }
@@ -143,7 +143,7 @@
 
                     string[] dateMoistSum = new string[] { group.Key, avgMoist.Average().ToString() };
                     totalSum.Add(dateMoistSum);
-                    totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
+                    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
                     avgMoist.Clear();
                 }
