@@ -150,5 +150,9 @@ namespace Väderdata___Erik___Emma.Methods
                 //}
             }
         }
+        public static void MoldRisk()
+        {
+
+        }
     }
 }

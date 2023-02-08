@@ -145,5 +145,17 @@
                 //}
             }
         }
+        public static void MoldRisk()
+        {
+
+        }
+        public static void Autumn()
+        {
+
+        }
+        public static void Winter()
+        {
+
+        }
     }
 }

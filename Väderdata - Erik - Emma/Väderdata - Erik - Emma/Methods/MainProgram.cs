@@ -97,19 +97,19 @@ namespace Väderdata___Erik___Emma.Methods
                                 break;
                             case OutsideMenu.Mögelrisk:
                                 Console.Clear();
-
+                                // OutsideFilterMethod.MoldRisk();
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
                             case OutsideMenu.Meteorologisk_höst:
                                 Console.Clear();
-
+                                // OutsideFilterMethod.Autumn();
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
                             case OutsideMenu.Meteorologisk_vinter:
                                 Console.Clear();
-
+                                // OutsideFilterMethod.Winter();
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
@@ -156,6 +156,10 @@ namespace Väderdata___Erik___Emma.Methods
                                 Console.Clear();
                                 break;
                             case InsideMenu.Mögelrisk:
+                                Console.Clear();
+                                // InsideFilterMethod.MoldRisk();
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                         }
                         break;
