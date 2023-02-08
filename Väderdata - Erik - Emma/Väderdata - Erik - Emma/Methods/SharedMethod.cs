@@ -16,10 +16,14 @@ namespace Väderdata___Erik___Emma.Methods
 
             return tempround;
         }
-        public static void LineForWord(string word)
+        public static void MakringLine(string word)
         {
             Console.WriteLine(word);
             Console.WriteLine(new String('-', word.Length));
+        }
+        public static void BreakingLine()
+        {
+            Console.WriteLine("-------------------------------------------------------------------");
         }
     }
 }

@@ -57,23 +57,28 @@ namespace Väderdata___Erik___Emma.Methods
                 }
 
                 //Avrundar medeltemperaturen och medelluftfuktighet till 1 decimal
-                double tempAvrNr = tempList.Average();
-                double moistAvrNr = moistList.Average();
+                double tempAvrNr = 0;
+                double moistAvrNr = 0;
+                try
+                {
+                    tempAvrNr = tempList.Average();
+                    moistAvrNr = moistList.Average();
+
+                }
+                catch
+                {
+                    SharedMethod.BreakingLine();
+                    Console.WriteLine("Datumet du angivit saknas eller skrivits i fel format! :(");
+                }
                 double tempRounded = SharedMethod.ConvertToOneDecimal(tempAvrNr);
                 double moistRounded = SharedMethod.ConvertToOneDecimal(moistAvrNr);
 
                 if (tempList.Count > 0)
                 {
-                    Console.WriteLine("-------------------------------------------------------------------");
+                    SharedMethod.BreakingLine();
                     Console.WriteLine("Medeltemperaturen för valt datum: " + tempRounded);
                     Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistRounded);
                 }
-                else
-                {
-                    Console.WriteLine("-------------------------------------------------------------------");
-                    Console.WriteLine("Datumet du angivit saknas eller skrivits i fel format! :(");
-                }
-
             }
             tempList.Clear();
         }
