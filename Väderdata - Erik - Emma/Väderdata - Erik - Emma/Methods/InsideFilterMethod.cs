@@ -55,10 +55,19 @@ namespace Väderdata___Erik___Emma.Methods
                         moistList.Add(double.Parse(moist));
                     }
                 }
+
+                //Avrundar medeltemperaturen och medelluftfuktighet till 1 decimal (delad metod?)
+                double tempnr1 = (tempList.Average() + 0.05) * 10;
+                int temp2 = (int)tempnr1;
+                double tempround = (double)temp2 / 10;
+                double moistnr1 = (moistList.Average() + 0.05) * 10;
+                int moistnr2 = (int)moistnr1;
+                double moistround = (double)moistnr2 / 10;
+
                 if (tempList.Count > 0)
                 {
-                    Console.WriteLine("Medeltemperaturen för valt datum: " + tempList.Average());
-                    Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistList.Average());
+                    Console.WriteLine("Medeltemperaturen för valt datum: " + tempround);
+                    Console.WriteLine("Medelluftfuktigheten för valt datum: " + moistround);
                 }
                 else
                 {
