@@ -85,31 +85,31 @@
                     tempArrayList.Add(lineArray);
                 }
 
-                tempArrayList = tempArrayList.OrderBy(t => t[3]).ToList();
-
                 var groupByDate = from d in tempArrayList
                                   group d by d[0] into newGroup
                                   orderby newGroup.Key
                                   select newGroup;
 
+                List<string[]> totalSum = new List<string[]>();
                 List<double> avgTemp = new List<double>();
                 foreach (var group in groupByDate)
                 {
-                    Console.WriteLine($"Datum: {group.Key}");
-                    foreach(var item in group)
+                    foreach (var item in group)
                     {
                         string dateTemp = item[3].Replace(".", ",");
                         avgTemp.Add(double.Parse(dateTemp));
                     }
-                    Console.WriteLine("Medeltemp: " + avgTemp.Average());
+
+                    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                    totalSum.Add(dateTempSum);
+                    totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
+
                     avgTemp.Clear();
                 }
-                
-                //foreach (string[] temp in airArrayList)
-                //{
-                //    Console.WriteLine(temp[0] + ", " + temp[3]);
-
-                //}
+                foreach (string[] value in totalSum)
+                {
+                    Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
+                }
             }
         }
         public static void DryToMoist()
@@ -126,31 +126,31 @@
                     airArrayList.Add(lineArray);
                 }
 
-                airArrayList = airArrayList.OrderBy(t => t[4]).ToList();
-
                 var groupByDate = from d in airArrayList
                                   group d by d[0] into newGroup
                                   orderby newGroup.Key
                                   select newGroup;
 
+                List<string[]> totalSum = new List<string[]>();
                 List<double> avgMoist = new List<double>();
                 foreach (var group in groupByDate)
                 {
-                    Console.WriteLine($"Datum: {group.Key}");
                     foreach (var item in group)
                     {
                         string dateTemp = item[4].Replace(".", ",");
                         avgMoist.Add(double.Parse(dateTemp));
                     }
-                    Console.WriteLine("Medelluftfuktighet: " + avgMoist.Average());
+
+                    string[] dateMoistSum = new string[] { group.Key, avgMoist.Average().ToString() };
+                    totalSum.Add(dateMoistSum);
+                    totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
+
                     avgMoist.Clear();
                 }
-
-                //foreach (string[] temp in airArrayList)
-                //{
-                //    Console.WriteLine(temp[0] + ", " + temp[3]);
-
-                //}
+                foreach (string[] value in totalSum)
+                {
+                    Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
+                }
             }
         }
         public static void MoldRisk()
