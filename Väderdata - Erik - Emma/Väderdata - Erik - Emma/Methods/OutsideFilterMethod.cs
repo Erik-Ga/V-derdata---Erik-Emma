@@ -87,7 +87,7 @@
                 {
                     string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
                             StringSplitOptions.RemoveEmptyEntries);
-                    
+
                     tempArrayList.Add(lineArray);
                 }
 
@@ -165,11 +165,124 @@
         }
         public static void Autumn()
         {
+            List<string[]> tempArrayList = new List<string[]>();
 
+            using (StreamReader reader = new StreamReader(path + "ute.txt"))
+            {
+                for (int i = 1; i < outsideArray.Length; i++)
+                {
+                    string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
+                            StringSplitOptions.RemoveEmptyEntries);
+
+                    tempArrayList.Add(lineArray);
+                }
+
+                var groupByDate = from d in tempArrayList
+                                  group d by d[0] into newGroup
+                                  orderby newGroup.Key
+                                  select newGroup;
+
+                List<string[]> totalSum = new List<string[]>();
+                List<double> avgTemp = new List<double>();
+                foreach (var group in groupByDate)
+                {
+                    foreach (var item in group)
+                    {
+                        string dateTemp = item[3].Replace(".", ",");
+                        avgTemp.Add(double.Parse(dateTemp));
+                    }
+
+                    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                    totalSum.Add(dateTempSum);
+
+                    avgTemp.Clear();
+                }
+                int autumnCounter = 0;
+                foreach (string[] value in totalSum)
+                {
+                    if (value[0].Contains("2016-08") || value[0].Contains("2016-09")
+                        || value[0].Contains("2016-10") || value[0].Contains("2016-11")
+                        || value[0].Contains("2016-12"))
+                    {
+                        if (double.Parse(value[1]) < 10)
+                        {
+                            Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
+                            autumnCounter++;
+                            if (autumnCounter == 5)
+                            {
+                                Console.WriteLine("Datum: " + value[0] + " vid detta datum har hösten anlänt!");
+                                break;
+                            }
+                        }
+                        else if (double.Parse(value[1]) > 10)
+                        {
+                            autumnCounter = 0;
+                        }
+                    }
+                }
+            }
         }
         public static void Winter()
         {
+            List<string[]> tempArrayList = new List<string[]>();
 
+            using (StreamReader reader = new StreamReader(path + "ute.txt"))
+            {
+                for (int i = 1; i < outsideArray.Length; i++)
+                {
+                    string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
+                            StringSplitOptions.RemoveEmptyEntries);
+
+                    tempArrayList.Add(lineArray);
+                }
+
+                var groupByDate = from d in tempArrayList
+                                  group d by d[0] into newGroup
+                                  orderby newGroup.Key
+                                  select newGroup;
+
+                List<string[]> totalSum = new List<string[]>();
+                List<double> avgTemp = new List<double>();
+                foreach (var group in groupByDate)
+                {
+                    foreach (var item in group)
+                    {
+                        string dateTemp = item[3].Replace(".", ",");
+                        avgTemp.Add(double.Parse(dateTemp));
+                    }
+
+                    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                    totalSum.Add(dateTempSum);
+
+                    avgTemp.Clear();
+                }
+                int winterCounter = 0;
+                int winterClosestCounter = 0;
+                string closestDate = "";
+                foreach (string[] value in totalSum)
+                {
+                    if (double.Parse(value[1]) < 0)
+                    {
+                        Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
+                        winterCounter++;
+                        if (winterCounter == 5)
+                        {
+                            Console.WriteLine("Datum: " + value[0] + " vid detta datum har vintern anlänt!");
+                            break;
+                        }
+                    }
+                    else if (double.Parse(value[1]) > 0)
+                    {
+                        if(winterCounter > 0 && winterCounter > winterClosestCounter)
+                        {
+                            winterClosestCounter = winterCounter;
+                            closestDate = value[0];
+                        }
+                        winterCounter = 0;
+                    }
+                }
+                Console.WriteLine("Närmast vinter datum för vinter: " + closestDate + "! Totala dagar under -0 grader i rad: " + winterClosestCounter);
+            }
         }
     }
 }
