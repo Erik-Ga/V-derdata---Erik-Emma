@@ -36,6 +36,13 @@
                 }
             }
         }
+        public static void CreateSumDataFile()
+        {
+            using (StreamWriter writer = File.CreateText(path + "sammanfattaddata.txt"))
+            {
+
+            }
+        }
     }
 
 }
