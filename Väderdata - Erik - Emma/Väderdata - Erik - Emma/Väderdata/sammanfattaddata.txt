@@ -45,3 +45,4 @@ Månad: 12 Mögelrisk: 0 (INNE)
 Månad: 13 Mögelrisk: 0 (INNE)
 Höststart: Datum: 2016-10-08 vid detta datum har hösten anlänt!
 Närmast vinter datum för vinter: 2016-11-10! Totala dagar under -0 grader i rad: 4
+Mögelalgoritm: ((((avgTemp.Average() * 0.26) + avgMoist.Average()) - 79) / 21) * 100;

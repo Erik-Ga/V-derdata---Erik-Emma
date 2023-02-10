@@ -25,5 +25,9 @@ namespace Väderdata___Erik___Emma.Methods
         {
             Console.WriteLine("-------------------------------------------------------------------");
         }
+        public static void WelcomeMethod(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }

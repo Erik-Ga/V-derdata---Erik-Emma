@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Väderdata___Erik___Emma.Methods
 {
+    public delegate void MyDelegate(string msg);
     public class MainProgram
     {
         enum IntroMenu
@@ -35,9 +36,10 @@ namespace Väderdata___Erik___Emma.Methods
             var loop = true;
             while(loop)
             {
+                MyDelegate del = SharedMethod.WelcomeMethod;
                 string welcome = "Välkommen till väderappen!";
                 SharedMethod.MakringLine(welcome);
-                Console.WriteLine("Vänligen välj datatyp:");
+                del("Vänligen välj datatyp:");
 
                 foreach (int i in Enum.GetValues(typeof(IntroMenu)))
                 {
