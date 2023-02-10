@@ -107,7 +107,7 @@
                         avgTemp.Add(double.Parse(dateTemp));
                     }
 
-                    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                    string[] dateTempSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgTemp.Average()).ToString() };
                     totalSum.Add(dateTempSum);
                     totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
@@ -117,7 +117,7 @@
                 {
                     Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
                 }
-                // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
+                //// DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                 //List<string[]> sumDateTemp = new List<string[]>();
                 //string[] dateSplitTest;
                 //string[] arrayDateTemp;
@@ -205,7 +205,7 @@
                         avgMoist.Add(double.Parse(dateTemp));
                     }
 
-                    string[] dateMoistSum = new string[] { group.Key, avgMoist.Average().ToString() };
+                    string[] dateMoistSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgMoist.Average()).ToString() };
                     totalSum.Add(dateMoistSum);
                     totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
 
@@ -317,7 +317,7 @@
                         moldRisk = 0;
                     }
 
-                    string[] dateTempAirSum = new string[] { group.Key, moldRisk.ToString() };
+                    string[] dateTempAirSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(moldRisk).ToString() };
                     totalSum.Add(dateTempAirSum);
 
                     moldRisk = 0;

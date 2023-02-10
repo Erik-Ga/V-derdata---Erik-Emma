@@ -111,7 +111,7 @@ namespace Väderdata___Erik___Emma.Methods
                         avgTemp.Add(double.Parse(dateTemp));
                     }
 
-                    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                    string[] dateTempSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgTemp.Average()).ToString() };
                     totalSum.Add(dateTempSum);
                     totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
@@ -210,7 +210,7 @@ namespace Väderdata___Erik___Emma.Methods
                         avgMoist.Add(double.Parse(dateMoist));
                     }
 
-                    string[] datetempsum = new string[] { group.Key, avgMoist.Average().ToString() };
+                    string[] datetempsum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgMoist.Average()).ToString() };
                     totalSum.Add(datetempsum);
                     totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
 
@@ -220,6 +220,7 @@ namespace Väderdata___Erik___Emma.Methods
                 {
                     Console.WriteLine("Datum: " + value[0] + "   Medelluftfuktighet: " + value[1]);
                 }
+
                 // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                 //List<string[]> sumDateMoist = new List<string[]>();
                 //string[] dateSplitTest;
@@ -323,7 +324,7 @@ namespace Väderdata___Erik___Emma.Methods
                         moldRisk = 0;
                     }
 
-                    string[] dateTempAirSum = new string[] { group.Key, moldRisk.ToString() };
+                    string[] dateTempAirSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(moldRisk).ToString() };
                     totalSum.Add(dateTempAirSum);
 
                     moldRisk = 0;
@@ -338,7 +339,8 @@ namespace Väderdata___Erik___Emma.Methods
                         Console.WriteLine("Datum: " + value[0] + "   Mögelrisk: " + value[1]);
                     }
                 }
-                // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
+
+                //// DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                 //List<string[]> sumDateMold = new List<string[]>();
                 //string[] dateSplit;
                 //string[] arrayDateMold;

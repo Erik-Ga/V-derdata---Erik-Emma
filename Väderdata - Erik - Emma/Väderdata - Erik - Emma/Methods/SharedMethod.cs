@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Väderdata___Erik___Emma.Methods
 {
-    public class SharedMethod
+    public static class SharedMethod
     {
         public static double ConvertToOneDecimal(double nr)
         {
@@ -16,7 +16,7 @@ namespace Väderdata___Erik___Emma.Methods
 
             return tempround;
         }
-        public static void MakringLine(string word)
+        public static void MarkingLine(string word)
         {
             Console.WriteLine(word);
             Console.WriteLine(new String('-', word.Length));
@@ -28,6 +28,11 @@ namespace Väderdata___Erik___Emma.Methods
         public static void WelcomeMethod(string message)
         {
             Console.WriteLine(message);
+        }
+        public static void Cw(this string text)
+        {
+            Console.WriteLine(text);
+            Console.WriteLine(new String('-', text.Length));
         }
     }
 }

@@ -36,9 +36,12 @@ namespace Väderdata___Erik___Emma.Methods
             var loop = true;
             while(loop)
             {
+                //Delegate metodval
                 MyDelegate del = SharedMethod.WelcomeMethod;
-                string welcome = "Välkommen till väderappen!";
-                SharedMethod.MakringLine(welcome);
+                //Extension methd//Extension methd
+                string welcome = "Välkommen till väderappen!";                
+                welcome.Cw();
+                //Kallar på delegate
                 del("Vänligen välj datatyp:");
 
                 foreach (int i in Enum.GetValues(typeof(IntroMenu)))
@@ -58,12 +61,15 @@ namespace Väderdata___Erik___Emma.Methods
                     Console.ReadKey();
                     Console.Clear();
                 }
+
+                //Meny - Utomhus & Inomhus
                 switch (menu)
                 {
+                    //Utomhus
                     case IntroMenu.Utomhus_Data:
                         Console.Clear();
                         string outsideData = "Utomhusdata:";
-                        SharedMethod.MakringLine(outsideData);
+                        SharedMethod.MarkingLine(outsideData);
 
                         foreach (int i in Enum.GetValues(typeof(OutsideMenu)))
                         {
@@ -122,10 +128,12 @@ namespace Väderdata___Erik___Emma.Methods
                                 break;
                         }
                         break;
+
+                    //Inomhus
                     case IntroMenu.Inomhus_Data:
                         Console.Clear();
                         string insideData = "Inomhusdata:";
-                        SharedMethod.MakringLine(insideData);
+                        SharedMethod.MarkingLine(insideData);
 
                         foreach (int i in Enum.GetValues(typeof(InsideMenu)))
                         {

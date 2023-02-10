@@ -8,11 +8,9 @@ namespace Väderdata___Erik___Emma
         {
             // CreateReadFile.CreateUte();
             // CreateReadFile.CreateInne();
-            // RegexValidate.DateCheck("2016-06-05");
-            MainProgram.WelcomeIntro();
-            // InsideFilterMethod.AverageTemperature();
             // CreateReadFile.CreateSumDataFile();
 
+            MainProgram.WelcomeIntro();
         }
     }
 }
