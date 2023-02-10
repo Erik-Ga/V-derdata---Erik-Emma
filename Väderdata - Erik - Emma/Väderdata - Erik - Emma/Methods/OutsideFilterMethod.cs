@@ -396,6 +396,7 @@
                 //    {
                 //        result.WriteLine(totalMoldMonth[i] + "(UTE)");
                 //    }
+                //  Console.WriteLine("Mögelalgoritm: ((((avgTemp.Average() * 0.26) + avgMoist.Average()) - 79) / 21) * 100;");
                 //}
             }
         }
