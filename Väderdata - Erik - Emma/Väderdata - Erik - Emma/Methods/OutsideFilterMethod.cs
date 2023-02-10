@@ -99,28 +99,6 @@
                 List<string[]> totalSum = new List<string[]>();
                 List<double> avgTemp = new List<double>();
 
-                //foreach (var group in groupByDate)
-                //{
-                //    foreach (var item in group)
-                //    {
-                //        string dateTemp = item[3].Replace(".", ",");
-                //        avgTemp.Add(double.Parse(dateTemp));
-                //    }
-
-                //    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
-                //    totalSum.Add(dateTempSum);
-                //    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
-
-                //    avgTemp.Clear();
-                //}
-                //foreach (string[] value in totalSum)
-                //{
-                //    Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
-                //}
-
-                List<string[]> sumDateTemp = new List<string[]>();
-                string[] dateSplitTest;
-                string[] arrayDateTemp;
                 foreach (var group in groupByDate)
                 {
                     foreach (var item in group)
@@ -128,52 +106,74 @@
                         string dateTemp = item[3].Replace(".", ",");
                         avgTemp.Add(double.Parse(dateTemp));
                     }
-                    dateSplitTest = group.Key.Split(new char[] { '-' },
-                            StringSplitOptions.RemoveEmptyEntries);
-                    arrayDateTemp= new string[] { dateSplitTest[0], dateSplitTest[1], dateSplitTest[2], avgTemp.Average().ToString()};
-                    sumDateTemp.Add(arrayDateTemp);
+
                     string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
                     totalSum.Add(dateTempSum);
                     totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
                     avgTemp.Clear();
                 }
-                var groupByMonth = from m in sumDateTemp
-                                  group m by m[1] into newGroupMonth
-                                  orderby newGroupMonth.Key
-                                  select newGroupMonth;
-
-                List<string> totalTempMonth = new List<string>();
-                List<double> avgTemp2 = new List<double>();
-                double monthTempTotal = 0;
-                int counterTemps = 0;
-                foreach (var month in groupByMonth)
+                foreach (string[] value in totalSum)
                 {
-                    foreach (var temp in month)
-                    {
-                        Console.WriteLine(month.Key + " " + temp[3]);
-                        double monthTemp = double.Parse(temp[3]);
-                        avgTemp2.Add(monthTemp);
-                        monthTempTotal = monthTempTotal + monthTemp;
-                        counterTemps++;
-                    }
-                    monthTempTotal = monthTempTotal / counterTemps;
-                    if (month.Key != "05" && month.Key != "01")
-                    {
-                        totalTempMonth.Add($"Månad: {month.Key} Medeltemp: {monthTempTotal} ");                     
-                        Console.WriteLine("Månad: " + month.Key + " Medeltemp: " + monthTempTotal);
-                    }
+                    Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
+                }
 
-                    monthTempTotal = 0;
-                    counterTemps = 0;
-                }
-                using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
-                {
-                    for (int i = 0; i < totalTempMonth.Count; i++)
-                    {
-                        result.WriteLine(totalTempMonth[i] + "(UTE)");
-                    }
-                }
+                //List<string[]> sumDateTemp = new List<string[]>();
+                //string[] dateSplitTest;
+                //string[] arrayDateTemp;
+                //foreach (var group in groupByDate)
+                //{
+                //    foreach (var item in group)
+                //    {
+                //        string dateTemp = item[3].Replace(".", ",");
+                //        avgTemp.Add(double.Parse(dateTemp));
+                //    }
+                //    dateSplitTest = group.Key.Split(new char[] { '-' },
+                //            StringSplitOptions.RemoveEmptyEntries);
+                //    arrayDateTemp = new string[] { dateSplitTest[0], dateSplitTest[1], dateSplitTest[2], avgTemp.Average().ToString() };
+                //    sumDateTemp.Add(arrayDateTemp);
+                //    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                //    totalSum.Add(dateTempSum);
+                //    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
+
+                //    avgTemp.Clear();
+                //}
+                //var groupByMonth = from m in sumDateTemp
+                //                   group m by m[1] into newGroupMonth
+                //                   orderby newGroupMonth.Key
+                //                   select newGroupMonth;
+
+                //List<string> totalTempMonth = new List<string>();
+                //List<double> avgTemp2 = new List<double>();
+                //double monthTempTotal = 0;
+                //int counterTemps = 0;
+                //foreach (var month in groupByMonth)
+                //{
+                //    foreach (var temp in month)
+                //    {
+                //        Console.WriteLine(month.Key + " " + temp[3]);
+                //        double monthTemp = double.Parse(temp[3]);
+                //        avgTemp2.Add(monthTemp);
+                //        monthTempTotal = monthTempTotal + monthTemp;
+                //        counterTemps++;
+                //    }
+                //    monthTempTotal = monthTempTotal / counterTemps;
+                //    if (month.Key != "05" && month.Key != "01")
+                //    {
+                //        totalTempMonth.Add($"Månad: {month.Key} Medeltemp: {monthTempTotal} ");
+                //        Console.WriteLine("Månad: " + month.Key + " Medeltemp: " + monthTempTotal);
+                //    }
+
+                //    monthTempTotal = 0;
+                //    counterTemps = 0;
+                //}
+                //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
+                //{
+                //    for (int i = 0; i < totalTempMonth.Count; i++)
+                //    {
+                //        result.WriteLine(totalTempMonth[i] + "(UTE)");
+                //    }
+                //}
             }
         }
         public static void DryToMoist()
@@ -207,7 +207,7 @@
 
                     string[] dateMoistSum = new string[] { group.Key, avgMoist.Average().ToString() };
                     totalSum.Add(dateMoistSum);
-                    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
+                    totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
 
                     avgMoist.Clear();
                 }
@@ -215,6 +215,62 @@
                 {
                     Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
                 }
+                //List<string[]> sumDateMoist = new List<string[]>();
+                //string[] dateSplitTest;
+                //string[] arrayDateMoist;
+                //foreach (var group in groupByDate)
+                //{
+                //    foreach (var item in group)
+                //    {
+                //        string dateMoist = item[4].Replace(".", ",");
+                //        avgMoist.Add(double.Parse(dateMoist));
+                //    }
+                //    dateSplitTest = group.Key.Split(new char[] { '-' },
+                //            StringSplitOptions.RemoveEmptyEntries);
+                //    arrayDateMoist = new string[] { dateSplitTest[0], dateSplitTest[1], dateSplitTest[2], avgMoist.Average().ToString() };
+                //    sumDateMoist.Add(arrayDateMoist);
+                //    string[] dateTempSum = new string[] { group.Key, avgMoist.Average().ToString() };
+                //    totalSum.Add(dateTempSum);
+                //    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
+
+                //    avgMoist.Clear();
+                //}
+                //var groupByMonth = from m in sumDateMoist
+                //                   group m by m[1] into newGroupMonth
+                //                   orderby newGroupMonth.Key
+                //                   select newGroupMonth;
+
+                //List<string> totalMoistMonth = new List<string>();
+                //List<double> avgMoist2 = new List<double>();
+                //double monthMoistTotal = 0;
+                //int counterMoists = 0;
+                //foreach (var month in groupByMonth)
+                //{
+                //    foreach (var moist in month)
+                //    {
+                //        Console.WriteLine(month.Key + " " + moist[3]);
+                //        double monthMoist = double.Parse(moist[3]);
+                //        avgMoist2.Add(monthMoist);
+                //        monthMoistTotal = monthMoistTotal + monthMoist;
+                //        counterMoists++;
+                //    }
+                //    monthMoistTotal = monthMoistTotal / counterMoists;
+                //    if (month.Key != "05" && month.Key != "01")
+                //    {
+                //        totalMoistMonth.Add($"Månad: {month.Key} Medelluftfuktighet: {monthMoistTotal} ");
+                //        Console.WriteLine("Månad: " + month.Key + " Medelluftfuktighet: " + monthMoistTotal);
+                //    }
+
+                //    monthMoistTotal = 0;
+                //    counterMoists = 0;
+                //}
+                //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
+                //{
+                //    for (int i = 0; i < totalMoistMonth.Count; i++)
+                //    {
+                //        result.WriteLine(totalMoistMonth[i] + "(UTE)");
+                //    }
+                //}
             }
         }
         public static void MoldRisk()
@@ -269,6 +325,12 @@
                             if (autumnCounter == 5)
                             {
                                 Console.WriteLine("Datum: " + value[0] + " vid detta datum har hösten anlänt!");
+                                //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
+                                //{
+
+                                //    result.WriteLine("Höststart: Datum: " + value[0] + " vid detta datum har hösten anlänt!");
+
+                                //}
                                 break;
                             }
                         }
@@ -331,7 +393,7 @@
                     }
                     else if (double.Parse(value[1]) > 0)
                     {
-                        if(winterCounter > 0 && winterCounter > winterClosestCounter)
+                        if (winterCounter > 0 && winterCounter > winterClosestCounter)
                         {
                             winterClosestCounter = winterCounter;
                             closestDate = value[0];
@@ -340,6 +402,10 @@
                     }
                 }
                 Console.WriteLine("Närmast vinter datum för vinter: " + closestDate + "! Totala dagar under -0 grader i rad: " + winterClosestCounter);
+                //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
+                //{
+                //    result.WriteLine("Närmast vinter datum för vinter: " + closestDate + "! Totala dagar under -0 grader i rad: " + winterClosestCounter);
+                //}
             }
         }
     }
