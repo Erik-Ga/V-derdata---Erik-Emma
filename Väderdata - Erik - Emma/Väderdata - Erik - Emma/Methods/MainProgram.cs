@@ -102,7 +102,7 @@ namespace Väderdata___Erik___Emma.Methods
                                 break;
                             case OutsideMenu.Mögelrisk:
                                 Console.Clear();
-                                // OutsideFilterMethod.MoldRisk();
+                                OutsideFilterMethod.MoldRisk();
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
@@ -164,7 +164,7 @@ namespace Väderdata___Erik___Emma.Methods
                                 break;
                             case InsideMenu.Mögelrisk:
                                 Console.Clear();
-                                // InsideFilterMethod.MoldRisk();
+                                InsideFilterMethod.MoldRisk();
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;

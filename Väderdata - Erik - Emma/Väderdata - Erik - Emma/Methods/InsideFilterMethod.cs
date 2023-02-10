@@ -205,8 +205,8 @@ namespace Väderdata___Erik___Emma.Methods
 
                     foreach (var item in group)
                     {
-                        string dateTemp = item[4].Replace(".", ",");
-                        avgMoist.Add(double.Parse(dateTemp));
+                        string dateMoist = item[4].Replace(".", ",");
+                        avgMoist.Add(double.Parse(dateMoist));
                     }
 
                     string[] datetempsum = new string[] { group.Key, avgMoist.Average().ToString() };
@@ -279,7 +279,52 @@ namespace Väderdata___Erik___Emma.Methods
         }
         public static void MoldRisk()
         {
+            List<string[]> tempArrayList = new List<string[]>();
+            List<string[]> airArrayList = new List<string[]>();
 
+            using (StreamReader reader = new StreamReader(path + "inne.txt"))
+            {
+                for (int i = 1; i < insideArray.Length; i++)
+                {
+                    string[] lineArray = reader.ReadLine().Split(new char[] { ' ', ',' },
+                            StringSplitOptions.RemoveEmptyEntries);
+
+                    tempArrayList.Add(lineArray);
+                    airArrayList.Add(lineArray);
+
+
+                }
+
+                var groupByDate = from d in tempArrayList
+                                  group d by d[0] into newGroup
+                                  orderby newGroup.Key
+                                  select newGroup;
+
+                List<string[]> totalSum = new List<string[]>();
+                List<double> avgTemp = new List<double>();
+                List<double> avgMoist = new List<double>();
+                foreach (var group in groupByDate)
+                {
+                    foreach (var item in group)
+                    {
+                        string dateTemp = item[3].Replace(".", ",");
+                        avgTemp.Add(double.Parse(dateTemp));
+                        string dateMoist = item[4].Replace(".", ",");
+                        avgMoist.Add(double.Parse(dateMoist));
+                    }
+
+                    string[] dateTempAirSum = new string[] { group.Key, avgTemp.Average().ToString(), avgMoist.Average().ToString() };
+                    totalSum.Add(dateTempAirSum);
+                    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
+
+                    avgTemp.Clear();
+                    avgMoist.Clear();
+                }
+                foreach (string[] value in totalSum)
+                {
+                    Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1] + "   Medelluftfukighet: " + value[2]);
+                }
+            }
         }
     }
 }
