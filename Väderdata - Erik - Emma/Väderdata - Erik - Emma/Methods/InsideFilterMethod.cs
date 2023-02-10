@@ -292,7 +292,6 @@ namespace Väderdata___Erik___Emma.Methods
                     tempArrayList.Add(lineArray);
                     airArrayList.Add(lineArray);
 
-
                 }
 
                 var groupByDate = from d in tempArrayList
@@ -303,6 +302,7 @@ namespace Väderdata___Erik___Emma.Methods
                 List<string[]> totalSum = new List<string[]>();
                 List<double> avgTemp = new List<double>();
                 List<double> avgMoist = new List<double>();
+                double moldRisk = 0;
                 foreach (var group in groupByDate)
                 {
                     foreach (var item in group)
@@ -312,17 +312,29 @@ namespace Väderdata___Erik___Emma.Methods
                         string dateMoist = item[4].Replace(".", ",");
                         avgMoist.Add(double.Parse(dateMoist));
                     }
+                    if (avgTemp.Average() > 0 && avgMoist.Average() >= 79)
+                    {
+                        moldRisk = ((((avgTemp.Average() * 0.26) + avgMoist.Average()) - 79) / 21) * 100;
+                    }
+                    else if (avgTemp.Average() < 0 && avgMoist.Average() < 79)
+                    {
+                        moldRisk = 0;
+                    }
 
-                    string[] dateTempAirSum = new string[] { group.Key, avgTemp.Average().ToString(), avgMoist.Average().ToString() };
+                    string[] dateTempAirSum = new string[] { group.Key, moldRisk.ToString() };
                     totalSum.Add(dateTempAirSum);
-                    totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
+                    moldRisk = 0;
                     avgTemp.Clear();
                     avgMoist.Clear();
                 }
+                totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
                 foreach (string[] value in totalSum)
                 {
-                    Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1] + "   Medelluftfukighet: " + value[2]);
+                    if (value[0] != "05" && value[0] != "01")
+                    {
+                        Console.WriteLine("Datum: " + value[0] + "   Mögelrisk: " + value[1]);
+                    }
                 }
             }
         }
