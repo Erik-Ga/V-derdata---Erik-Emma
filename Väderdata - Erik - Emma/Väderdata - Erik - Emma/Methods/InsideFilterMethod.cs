@@ -121,6 +121,7 @@ namespace Väderdata___Erik___Emma.Methods
                 {
                     Console.WriteLine("Datum: " + value[0] + "   Medeltemperatur: " + value[1]);
                 }
+                // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                 //List<string[]> sumDateTemp = new List<string[]>();
                 //string[] dateSplitTest;
                 //string[] arrayDateTemp;
@@ -219,6 +220,7 @@ namespace Väderdata___Erik___Emma.Methods
                 {
                     Console.WriteLine("Datum: " + value[0] + "   Medelluftfuktighet: " + value[1]);
                 }
+                // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                 //List<string[]> sumDateMoist = new List<string[]>();
                 //string[] dateSplitTest;
                 //string[] arrayDateMoist;
@@ -336,6 +338,71 @@ namespace Väderdata___Erik___Emma.Methods
                         Console.WriteLine("Datum: " + value[0] + "   Mögelrisk: " + value[1]);
                     }
                 }
+                // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
+                //List<string[]> sumDateMold = new List<string[]>();
+                //string[] dateSplit;
+                //string[] arrayDateMold;
+                //foreach (var group in groupByDate)
+                //{
+                //    foreach (var item in group)
+                //    {
+                //        string dateTemp = item[3].Replace(".", ",");
+                //        avgTemp.Add(double.Parse(dateTemp));
+                //        string dateMoist = item[4].Replace(".", ",");
+                //        avgMoist.Add(double.Parse(dateMoist));
+                //    }
+                //    if (avgTemp.Average() > 0 && avgMoist.Average() >= 79)
+                //    {
+                //        moldRisk = ((((avgTemp.Average() * 0.26) + avgMoist.Average()) - 79) / 21) * 100;
+                //    }
+                //    else if (avgTemp.Average() < 0 && avgMoist.Average() < 79)
+                //    {
+                //        moldRisk = 0;
+                //    }
+                //    dateSplit = group.Key.Split(new char[] { '-' },
+                //            StringSplitOptions.RemoveEmptyEntries);
+                //    arrayDateMold = new string[] { dateSplit[0], dateSplit[1], dateSplit[2], moldRisk.ToString() };
+                //    sumDateMold.Add(arrayDateMold);
+                //    avgTemp.Clear();
+                //    avgMoist.Clear();
+                //}
+                //sumDateMold = sumDateMold.OrderBy(t => double.Parse(t[1])).ToList();
+                //var groupByMonth = from m in sumDateMold
+                //                   group m by m[1] into newGroupMonth
+                //                   orderby newGroupMonth.Key
+                //                   select newGroupMonth;
+
+                //List<string> totalMoldMonth = new List<string>();
+                //List<double> avgMold2 = new List<double>();
+                //double monthMoldTotal = 0;
+                //int counterMolds = 0;
+                //foreach (var month in groupByMonth)
+                //{
+                //    foreach (var mold in month)
+                //    {
+                //        Console.WriteLine(month.Key + " " + mold[3]);
+                //        double monthTemp = double.Parse(mold[3]);
+                //        avgMold2.Add(monthTemp);
+                //        monthMoldTotal = monthMoldTotal + monthTemp;
+                //        counterMolds++;
+                //    }
+                //    monthMoldTotal = monthMoldTotal / counterMolds;
+                //    if (month.Key != "05" && month.Key != "01")
+                //    {
+                //        totalMoldMonth.Add($"Månad: {month.Key} Mögelrisk: {monthMoldTotal} ");
+                //        Console.WriteLine("Månad: " + month.Key + " Mögelrisk: " + monthMoldTotal);
+                //    }
+
+                //    monthMoldTotal = 0;
+                //    counterMolds = 0;
+                //}
+                //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
+                //{
+                //    for (int i = 0; i < totalMoldMonth.Count; i++)
+                //    {
+                //        result.WriteLine(totalMoldMonth[i] + "(INNE)");
+                //    }
+                //}
             }
         }
     }
