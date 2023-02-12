@@ -449,7 +449,7 @@
                             if (autumnCounter == 5)
                             {
                                 Console.WriteLine("Datum: " + value[0] + " vid detta datum har hösten anlänt!");
-                                // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
+                                //// DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                                 //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
                                 //{
 
@@ -527,7 +527,7 @@
                     }
                 }
                 Console.WriteLine("Närmast vinter datum för vinter: " + closestDate + "! Totala dagar under -0 grader i rad: " + winterClosestCounter);
-                // DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
+                //// DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                 //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
                 //{
                 //    result.WriteLine("Närmast vinter datum för vinter: " + closestDate + "! Totala dagar under -0 grader i rad: " + winterClosestCounter);
