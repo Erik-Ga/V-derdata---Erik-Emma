@@ -34,5 +34,11 @@ namespace Väderdata___Erik___Emma.Methods
             Console.WriteLine(text);
             Console.WriteLine(new String('-', text.Length));
         }
+        public static void Sun()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("        \\     (      /\r\n   `.    \\     )    /    .'\r\n     `.   \\   (    /   .'\r\n       `.  .-''''-.  .'\r\n `~._    .'/_    _\\`.    _.~'\r\n     `~ /  / \\  / \\  \\ ~'\r\n_ _ _ _|  _\\O/  \\O/_  |_ _ _ _\r\n       | (_)  /\\  (_) |\r\n    _.~ \\  \\      /  / ~._\r\n .~'     `. `.__.' .'     `~.\r\n       .'  `-,,,,-'  `.\r\n     .'   /    )   \\   `.\r\n   .'    /    (     \\    `.\r\n        /      )     \\        \r\n              (");
+            Console.ResetColor();
+        }
     }
 }

@@ -9,7 +9,6 @@ namespace Väderdata___Erik___Emma
             // CreateReadFile.CreateUte();
             // CreateReadFile.CreateInne();
             // CreateReadFile.CreateSumDataFile();
-
             MainProgram.WelcomeIntro();
         }
     }

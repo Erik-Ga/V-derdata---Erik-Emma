@@ -430,12 +430,14 @@
                         avgTemp.Add(double.Parse(dateTemp));
                     }
 
-                    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                    string[] dateTempSum = new string[] { group.Key,SharedMethod.ConvertToOneDecimal(avgTemp.Average()).ToString() };
                     totalSum.Add(dateTempSum);
 
                     avgTemp.Clear();
                 }
                 int autumnCounter = 0;
+                string autumnHeadLine = "Dagar med medeltemperetur under 10 grader i rad";
+                SharedMethod.MarkingLine(autumnHeadLine);
                 foreach (string[] value in totalSum)
                 {
                     if (value[0].Contains("2016-08") || value[0].Contains("2016-09")
@@ -448,6 +450,7 @@
                             autumnCounter++;
                             if (autumnCounter == 5)
                             {
+                                SharedMethod.BreakingLine();
                                 Console.WriteLine("Datum: " + value[0] + " vid detta datum har hösten anlänt!");
                                 //// DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                                 //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
@@ -496,7 +499,7 @@
                         avgTemp.Add(double.Parse(dateTemp));
                     }
 
-                    string[] dateTempSum = new string[] { group.Key, avgTemp.Average().ToString() };
+                    string[] dateTempSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgTemp.Average()).ToString() };
                     totalSum.Add(dateTempSum);
 
                     avgTemp.Clear();
@@ -504,6 +507,8 @@
                 int winterCounter = 0;
                 int winterClosestCounter = 0;
                 string closestDate = "";
+                string winterHeadLine = "Alla datum under 0 grader";
+                SharedMethod.MarkingLine(winterHeadLine);
                 foreach (string[] value in totalSum)
                 {
                     if (double.Parse(value[1]) < 0)
@@ -526,7 +531,8 @@
                         winterCounter = 0;
                     }
                 }
-                Console.WriteLine("Närmast vinter datum för vinter: " + closestDate + "! Totala dagar under -0 grader i rad: " + winterClosestCounter);
+                SharedMethod.BreakingLine();
+                Console.WriteLine("Närmast datum för meterologisk vinter: " + closestDate + "!\nTotala dagar under 0 grader i rad: " + winterClosestCounter);
                 //// DETTA ÄR FÖR SAMMANSTÄLLDA TEXTFILEN
                 //using (StreamWriter result = new StreamWriter(path + "sammanfattaddata.txt", true))
                 //{

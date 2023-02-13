@@ -36,6 +36,7 @@ namespace Väderdata___Erik___Emma.Methods
             var loop = true;
             while(loop)
             {
+                SharedMethod.Sun();
                 //Delegate metodval
                 MyDelegate del = SharedMethod.WelcomeMethod;
                 //Extension methd//Extension methd
