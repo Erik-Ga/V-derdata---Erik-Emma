@@ -6,9 +6,11 @@ namespace Väderdata___Erik___Emma
     {
         static void Main(string[] args)
         {
+            ////Skapa texfilerna (skedde en gång)
             // CreateReadFile.CreateUte();
             // CreateReadFile.CreateInne();
             // CreateReadFile.CreateSumDataFile();
+
             MainProgram.WelcomeIntro();
         }
     }

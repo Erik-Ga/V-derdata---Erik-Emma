@@ -36,6 +36,7 @@ namespace Väderdata___Erik___Emma.Methods
             var loop = true;
             while(loop)
             {
+                //En rolig sol :)
                 SharedMethod.Sun();
                 //Delegate metodval
                 MyDelegate del = SharedMethod.WelcomeMethod;
@@ -89,11 +90,12 @@ namespace Väderdata___Erik___Emma.Methods
                             Console.ReadKey();
                             Console.Clear();
                         }
+                        //Menyvalen
                         switch (menuOutside)
                         {
                             case OutsideMenu.Medeltemperatur_och_Medelluftfuktighet:
                                 Console.Clear();
-                                OutsideFilterMethod.AverageTemperature();
+                                OutsideFilterMethod.AverageTempMoist();
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
@@ -153,11 +155,12 @@ namespace Väderdata___Erik___Emma.Methods
                             Console.ReadKey();
                             Console.Clear();
                         }
+                        //Menyvalen
                         switch (menuInside)
                         {
                             case InsideMenu.Medeltemperatur_och_Medelluftfuktighet:
                                 Console.Clear();
-                                InsideFilterMethod.AverageTemperature();
+                                InsideFilterMethod.AverageTempMoist();
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;

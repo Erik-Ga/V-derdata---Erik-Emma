@@ -30,7 +30,7 @@ namespace Väderdata___Erik___Emma.Methods
                 //}
             }
         }
-        public static void AverageTemperature()
+        public static void AverageTempMoist()
         {
             List<double> tempList = new List<double>();
             List<double> moistList = new List<double>();
@@ -113,6 +113,7 @@ namespace Väderdata___Erik___Emma.Methods
 
                     string[] dateTempSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgTemp.Average()).ToString() };
                     totalSum.Add(dateTempSum);
+                    //Lambda
                     totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
                     avgTemp.Clear();
@@ -214,6 +215,7 @@ namespace Väderdata___Erik___Emma.Methods
 
                     string[] datetempsum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgMoist.Average()).ToString() };
                     totalSum.Add(datetempsum);
+                    //Lambda
                     totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
 
                     avgMoist.Clear();

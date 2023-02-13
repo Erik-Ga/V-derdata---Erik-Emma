@@ -17,14 +17,15 @@
                             StringSplitOptions.RemoveEmptyEntries);
                     arrayList.Add(lineArray);
                 }
-                ////Se specifika värden från arrayer
+                /*OBS. ENDAST FÖR KONTROLL AV DATA
+                 * Se specifika värden från arrayer*/
                 //foreach (string[] lineArray in arrayList)
                 //{
                 //    Console.WriteLine(lineArray[4]);
                 //}
             }
         }
-        public static void AverageTemperature()
+        public static void AverageTempMoist()
         {
             List<double> tempList = new List<double>();
             List<double> moistList = new List<double>();
@@ -50,7 +51,6 @@
                     }
                 }
 
-                //Avrundar medeltemperatur och medelluftfuktighet till 1 decimal
                 double tempAvrNr = 0;
                 double moistAvrNr = 0;
                 try
@@ -109,6 +109,7 @@
 
                     string[] dateTempSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgTemp.Average()).ToString() };
                     totalSum.Add(dateTempSum);
+                    //Lambda
                     totalSum = totalSum.OrderByDescending(t => double.Parse(t[1])).ToList();
 
                     avgTemp.Clear();
@@ -208,6 +209,7 @@
 
                     string[] dateMoistSum = new string[] { group.Key, SharedMethod.ConvertToOneDecimal(avgMoist.Average()).ToString() };
                     totalSum.Add(dateMoistSum);
+                    //Lambda
                     totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
 
                     avgMoist.Clear();
@@ -327,6 +329,7 @@
                     avgTemp.Clear();
                     avgMoist.Clear();
                 }
+                //Lambda
                 totalSum = totalSum.OrderBy(t => double.Parse(t[1])).ToList();
                 foreach (string[] value in totalSum)
                 {
